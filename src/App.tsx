@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DashboardPage from "./pages/Home";
-import { LoginPage, SignupPage } from "./pages/Auth";
+import { LoginPage } from "./pages/Auth";
 import AuthWrapper from "./components/AuthWrapper";
 
 function App() {
@@ -9,7 +9,6 @@ function App() {
       <Routes>
         <Route path="/" element={<DashboardPage />} />
         <Route element={<AuthWrapper />}>
-          <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Route>
       </Routes>

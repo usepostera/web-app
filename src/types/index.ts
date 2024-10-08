@@ -29,5 +29,19 @@ export type ContainedButtonProps = {
   variant?: "contained" | "outlined";
 };
 
+export type LoginData = {
+  walletAddress: string;
+};
+
+export type LoginResponse = {
+  message: string;
+  token: string;
+};
+
+export type LoginVerificationData = {
+  code: string;
+  session: string;
+};
+
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type OutlinedButtonProps = {};

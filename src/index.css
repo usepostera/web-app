@@ -31,7 +31,7 @@ input::placeholder {
 }
 
 .loader {
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid #228B22;
     /* Light border */
     border-top: 3px solid white;
     /* Top border for the spinning effect */

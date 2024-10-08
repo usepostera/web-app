@@ -12,7 +12,7 @@ function withAuthProtection<T extends JSX.IntrinsicAttributes>(
     );
 
     if (isAuthenticated) {
-      return <Navigate to="/dashboard" />;
+      return <Navigate to="/" />;
     }
 
     return <WrappedComponent {...props} />;
