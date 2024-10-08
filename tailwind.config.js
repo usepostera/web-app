@@ -8,6 +8,7 @@ export default {
       },
       colors: {
         danger: "#DC2626",
+        primary: "#228B22",
       },
     },
   },

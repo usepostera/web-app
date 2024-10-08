@@ -6,6 +6,7 @@ type Props = {
   error?: TValidatorError | null;
   isViewOnly?: boolean;
   suffixIcon?: ReactNode;
+  prefixIcon?: ReactNode;
 } & InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>;
 
 export const TextInput: React.FC<Props> = ({
@@ -14,6 +15,8 @@ export const TextInput: React.FC<Props> = ({
   error = null,
   isViewOnly = false,
   suffixIcon,
+  prefixIcon,
+  className,
   ...textInputProps
 }) => {
   return (
@@ -34,7 +37,11 @@ export const TextInput: React.FC<Props> = ({
         />
       )}
       {!multiple && !isViewOnly && (
-        <div className="flex flex-row items-center rounded-[6px] border-[1px] border-[#000000] pr-[12px]">
+        <div
+          className={`flex flex-row items-center rounded-[6px] border-[1px] border-[#000000] pr-[12px] ${className}`}
+        >
+          {prefixIcon && prefixIcon}
+
           <input
             className="flex-1 py-[8px] px-[12px] bg-transparent text-[14px] leading-[17.01px] text-[#000000] outline-none"
             {...textInputProps}

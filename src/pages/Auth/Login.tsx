@@ -8,16 +8,13 @@ const Login: React.FC = () => {
     <div className="container mx-auto px-4 md:px-0 font-montserrat font-normal">
       <div className="flex flex-col items-center gap-4 max-w-[375px] mx-auto">
         <SimpleAnimatedComponent>
-          <h1 className="text-white text-[36px] font-semibold leading-[43.88px] transition">
-            Welcome!
-          </h1>
-        </SimpleAnimatedComponent>
-
-        <SimpleAnimatedComponent>
           <form className="w-full rounded-[20px] bg-[#FFFFFFB2] px-5 py-6 flex flex-col gap-6">
-            <p className="text-[14px] leading-[17.07px] mb-2">
-              Welcome to recycle pro. Here, we save the world by recycling waste
-              and stuffs. Yes, we are superheroes
+            <h1 className="text-black text-center text-[36px] font-semibold leading-[43.88px] transition">
+              Welcome!
+            </h1>
+
+            <p className="text-[14px] leading-[17.07px] mb-2 text-center">
+              Welcome to Postera. Please, connect your wallet to continue
             </p>
 
             <ConnectButton />

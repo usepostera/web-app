@@ -27,7 +27,11 @@ export function ConnectButton() {
 
   return (
     <ConnectWallet className="rounded-[6px] h-[40px] py-[13px] px-[12px] w-full flex justify-center items-center bg-[#228B22] hover:bg-[#228B22] hover:opacity-[0.7]">
-      <ConnectWalletText>Log in</ConnectWalletText>
+      <ConnectWalletText>
+        <span className="!font-montserrat !font-normal text-[18px] leading-[24px]">
+          Connect wallet
+        </span>
+      </ConnectWalletText>
     </ConnectWallet>
   );
 }
