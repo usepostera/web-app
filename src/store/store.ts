@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
+import recyclableReducer from "./recyclableSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +15,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
   reducer: {
     auth: persistedReducer,
+    recyclables: recyclableReducer,
   },
 });
 

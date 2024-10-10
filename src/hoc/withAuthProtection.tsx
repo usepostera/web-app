@@ -1,6 +1,7 @@
-import { ComponentType } from "react";
+import { ComponentType, useEffect } from "react";
 import { useAppSelector } from "../store/store";
 import { Navigate } from "react-router-dom";
+import { useAccount } from "wagmi";
 
 // HOC that checks if user is authenticated, redirects to dashboard if logged in
 function withAuthProtection<T extends JSX.IntrinsicAttributes>(
@@ -10,6 +11,15 @@ function withAuthProtection<T extends JSX.IntrinsicAttributes>(
     const isAuthenticated = useAppSelector(
       (state) => state.auth.isAuthenticated
     );
+
+    const { isConnected, connector } = useAccount();
+
+    useEffect(() => {
+      if (!isAuthenticated && isConnected) {
+        console.log("[isConnected]", isConnected);
+        connector?.disconnect();
+      }
+    }, [connector, isAuthenticated, isConnected]);
 
     if (isAuthenticated) {
       return <Navigate to="/" />;

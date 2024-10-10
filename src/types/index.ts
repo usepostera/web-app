@@ -38,6 +38,19 @@ export type LoginResponse = {
   token: string;
 };
 
+export enum RecyclableUnit {
+  Kg = "Kg",
+  Unit = "Unit",
+}
+
+export type TRecyclable = {
+  _id: string;
+  name: string;
+  image: string;
+  unit: RecyclableUnit;
+  price_per_unit: number;
+};
+
 export type LoginVerificationData = {
   code: string;
   session: string;

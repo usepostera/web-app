@@ -1,7 +1,6 @@
 import {
   ConnectWallet,
   Wallet,
-  WalletDefault,
   WalletDropdown,
   WalletDropdownDisconnect,
 } from "@coinbase/onchainkit/wallet";
@@ -9,12 +8,19 @@ import Inputs from "./Input";
 import SearchIcon from "../assets/svgs/search_icon.svg";
 import { Address, Avatar, Identity, Name } from "@coinbase/onchainkit/identity";
 import { color } from "@coinbase/onchainkit/theme";
+import { useLocation } from "react-router-dom";
+
+const pathnameMapping: { [key: string]: string } = {
+  "/": "Home",
+};
 
 const AppHeader = () => {
+  const { pathname } = useLocation();
+
   return (
     <header className="bg-[#F7F7F7] h-[70px] pr-8 fixed w-full z-10 top-0 left-0 pl-72 flex flex-row justify-between items-center">
       <div className="font-montserrat text-[24px] leading-[29.26px] font-semibold text-black">
-        Home
+        {pathnameMapping[pathname]}
       </div>
 
       <div className="max-w-[323px] flex-1">

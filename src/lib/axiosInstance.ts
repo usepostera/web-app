@@ -5,11 +5,11 @@ const headers = {
   "content-type": "application/json",
 };
 
-export const baseURL = "http://localhost:4000/api/v1";
+export const baseURL = import.meta.env.VITE_API_ROUTE;
 
 const instance = (token?: string) => {
   const axiosInstance = axios.create({
-    baseURL: baseURL,
+    baseURL: `${baseURL}/api/v1`,
     headers,
   });
 
