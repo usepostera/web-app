@@ -1,9 +1,9 @@
-import React, { FC, SVGProps, useEffect, useState } from "react";
+import React, { SVGProps, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 type NavItemProps = {
   label: string;
-  Icon: FC<SVGProps<SVGElement>>;
+  Icon: React.FunctionComponent<SVGProps<SVGSVGElement>>;
   route?: string;
   isActive?: boolean;
 };
