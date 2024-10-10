@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, ReactNode } from "react";
-import { TValidatorError } from "../../types";
+import { TValidatorError } from "../../@types";
 
 type Props = {
   label?: string;

@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { TValidatorError, Validator } from "../types";
+import { TValidatorError, Validator } from "../@types";
 
 export type FormError<T extends object> = {
   [Prop in keyof T]: TValidatorError;

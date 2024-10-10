@@ -1,4 +1,4 @@
-import { GlobalButtonProps } from "../../types";
+import { GlobalButtonProps } from "../../@types";
 import RippleEffect from "../Ripple";
 
 export const TextButton = (props: GlobalButtonProps) => {

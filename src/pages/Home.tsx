@@ -12,7 +12,7 @@ import {
   selectRecyclableItem,
 } from "../store/recyclableSlice";
 import { RecyclableCard } from "../components/RecyclableCard";
-import { TRecyclable } from "../types";
+import { TRecyclable } from "../@types";
 
 const DashboardPage: React.FC = () => {
   const dispatch = useAppDispatch();

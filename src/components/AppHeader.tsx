@@ -9,6 +9,7 @@ import SearchIcon from "../assets/svgs/search_icon.svg";
 import { Address, Avatar, Identity, Name } from "@coinbase/onchainkit/identity";
 import { color } from "@coinbase/onchainkit/theme";
 import { useLocation } from "react-router-dom";
+import { useAccount } from "wagmi";
 
 const pathnameMapping: { [key: string]: string } = {
   "/": "Home",
@@ -16,6 +17,7 @@ const pathnameMapping: { [key: string]: string } = {
 
 const AppHeader = () => {
   const { pathname } = useLocation();
+  const { chain, address } = useAccount();
 
   return (
     <header className="bg-[#F7F7F7] h-[70px] pr-8 fixed w-full z-10 top-0 left-0 pl-72 flex flex-row justify-between items-center">
@@ -34,7 +36,7 @@ const AppHeader = () => {
       <Wallet>
         <ConnectWallet className="bg-[#0000000D] hover:bg-[#0000004D]">
           <Avatar className="h-6 w-6" />
-          <Name />
+          <Name address={address} chain={chain} />
         </ConnectWallet>
         <WalletDropdown>
           <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>

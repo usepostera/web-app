@@ -1,11 +1,11 @@
-import Logo from "../assets/svgs/logo-transparent-2.svg?react";
+import Logo from "../assets/svgs/logo-transparent-2.svg";
 import NavItem from "./NavLink";
 
-import HomeIcon from "../assets/svgs/home_icon.svg?react";
-import NotificationIcon from "../assets/svgs/notification.svg?react";
-import TruckIcon from "../assets/svgs/truck.svg?react";
-import AwardIcon from "../assets/svgs/award.svg?react";
-import ProfileIcon from "../assets/svgs/profile-circle.svg?react";
+import HomeIcon from "../assets/svgs/home_icon.svg";
+import NotificationIcon from "../assets/svgs/notification.svg";
+import TruckIcon from "../assets/svgs/truck.svg";
+import AwardIcon from "../assets/svgs/award.svg";
+import ProfileIcon from "../assets/svgs/profile-circle.svg";
 
 const AppSidebar = () => {
   return (

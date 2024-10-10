@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-useless-escape */
-import { IFormFieldValidator } from "../types";
-import { TValidatorRule } from "../types/validators";
+import { IFormFieldValidator } from "../@types";
+import { TValidatorRule } from "../@types/validators";
 
 export class FormFieldValidator<T, FormType extends object>
   implements IFormFieldValidator<T, FormType>

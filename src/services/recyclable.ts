@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useAppSelector } from "../store/store";
 import instance from "../lib/axiosInstance";
-import { TRecyclable } from "../types";
+import { TRecyclable } from "../@types";
 
 export const useRecyclableService = () => {
   const token = useAppSelector((state) => state.auth.token);

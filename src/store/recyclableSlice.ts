@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TRecyclable } from "../types";
+import { TRecyclable } from "../@types";
 
 type RecyclableState = {
   data: TRecyclable[];

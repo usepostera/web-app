@@ -1,4 +1,4 @@
-import { ContainedButtonProps, GlobalButtonProps } from "../../types";
+import { ContainedButtonProps, GlobalButtonProps } from "../../@types";
 import RippleEffect from "../Ripple";
 
 export const ContainedButton = (

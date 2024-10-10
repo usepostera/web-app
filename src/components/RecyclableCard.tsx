@@ -1,5 +1,5 @@
 import React from "react";
-import { TRecyclable } from "../types";
+import { TRecyclable } from "../@types";
 import { baseURL } from "../lib/axiosInstance";
 import SimpleAnimatedComponent from "./SimpleAnimatedComponent";
 import RippleEffect from "./Ripple";
