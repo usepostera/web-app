@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 const pathnameMapping: { [key: string]: string } = {
   "/": "Home",
   "/pickups": "Pickups",
+  "/volunteer": "Volunteer",
 };
 
 const AppHeader = () => {
