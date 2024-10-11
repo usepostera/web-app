@@ -73,35 +73,38 @@ export const useForm = <T extends object>(
     [form, validators]
   );
 
-  const validate = (
-    keys: (keyof T)[] = Object.keys(form) as (keyof T)[]
-  ): boolean => {
-    let valid = true;
+  const validate = useCallback(
+    (keys: (keyof T)[] = Object.keys(form) as (keyof T)[]): boolean => {
+      let valid = true;
 
-    for (const key of keys) {
-      const validator = validators[key];
+      for (const key of keys) {
+        const validator = validators[key];
 
-      if (validator) {
-        const error = validator.validate(form[key], form);
+        if (validator) {
+          const error = validator.validate(form[key], form);
 
-        setFormErrors((prev) => ({
-          ...prev,
-          [key]: error,
-        }));
+          console.log(error);
 
-        if (error && typeof error === "string") {
-          valid = false;
-        } else if (
-          Array.isArray(error) &&
-          error.some((e) => typeof e === "string")
-        ) {
-          valid = false;
+          setFormErrors((prev) => ({
+            ...prev,
+            [key]: error,
+          }));
+
+          if (error && typeof error === "string") {
+            valid = false;
+          } else if (
+            Array.isArray(error) &&
+            error.some((e) => typeof e === "string")
+          ) {
+            valid = false;
+          }
         }
       }
-    }
 
-    return valid;
-  };
+      return valid;
+    },
+    [form, validators]
+  );
 
   const validateForm = <X extends T>(form: X, keys: (keyof X)[]): boolean => {
     let valid = true;

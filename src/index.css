@@ -51,3 +51,7 @@ input::placeholder {
         transform: rotate(360deg);
     }
 }
+
+.custom-gradient-border {
+    background: conic-gradient(from 0deg, #228B22, #32CD32);
+}

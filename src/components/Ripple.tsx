@@ -18,6 +18,7 @@ type RippleEffectProps = {
   onClick?: VoidFunction;
   className?: string;
   disabled?: boolean;
+  skipDelay?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
 const RippleEffect: React.FC<RippleEffectProps> = ({
@@ -25,6 +26,7 @@ const RippleEffect: React.FC<RippleEffectProps> = ({
   onClick,
   className,
   disabled,
+  skipDelay = false,
   ...others
 }) => {
   const [ripples, setRipples] = useState<Ripple[]>([]);
@@ -43,10 +45,14 @@ const RippleEffect: React.FC<RippleEffectProps> = ({
 
     setRipples((prevRipples) => [...prevRipples, newRipple]);
 
+    if (onClick && skipDelay) {
+      onClick();
+    }
+
     // Remove the ripple after animation
     setTimeout(() => {
       setRipples((prevRipples) => prevRipples.slice(1));
-      if (onClick) {
+      if (onClick && !skipDelay) {
         onClick();
       }
     }, 300);

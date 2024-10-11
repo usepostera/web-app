@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import withAuthRedirect from "../hoc/withAuthRedirect";
 import SimpleAnimatedComponent from "../components/SimpleAnimatedComponent";
 import Inputs from "../components/Input";
@@ -13,15 +13,21 @@ import {
 } from "../store/recyclableSlice";
 import { RecyclableCard } from "../components/RecyclableCard";
 import { TRecyclable } from "../@types";
+import PickupRequest from "../components/PickupRequest";
 
 const DashboardPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const recyclables = useAppSelector((state) => state.recyclables.data);
-  const selectRecyclableId = useAppSelector(
+  const selectedRecyclableId = useAppSelector(
     (state) => state.recyclables.selectedId
   );
   const isRecyclableInitialzed = useAppSelector(
     (state) => state.recyclables.isInitialzed
+  );
+
+  const selectedRecyclable = useMemo(
+    () => recyclables.find((e) => e._id === selectedRecyclableId),
+    [selectedRecyclableId, recyclables]
   );
 
   const { getRecyclables } = useRecyclableService();
@@ -46,6 +52,10 @@ const DashboardPage: React.FC = () => {
     },
     [dispatch]
   );
+
+  const closePickupRequest = useCallback(() => {
+    dispatch(selectRecyclableItem(null));
+  }, [dispatch]);
 
   return (
     <div className="flex flex-row gap-8 font-montserrat p-8">
@@ -75,7 +85,7 @@ const DashboardPage: React.FC = () => {
 
         <SimpleAnimatedComponent>
           <Inputs.Text
-            placeholder="Search here"
+            placeholder="Search recyclables"
             className="!rounded-[40px] h-[40px] pl-4 !border-[#0000004D]"
             prefixIcon={<SearchIcon />}
           />
@@ -88,13 +98,20 @@ const DashboardPage: React.FC = () => {
                 data={recyclable}
                 key={recyclable._id}
                 onSelect={onSelect}
-                selected={selectRecyclableId === recyclable._id}
+                selected={selectedRecyclableId === recyclable._id}
               />
             ))}
         </div>
       </div>
 
-      <div className="flex-1 max-w-[380px]"></div>
+      <div className="flex-1 max-w-[380px]">
+        {selectedRecyclable && (
+          <PickupRequest
+            recyclable={selectedRecyclable}
+            onClose={closePickupRequest}
+          />
+        )}
+      </div>
     </div>
   );
 };

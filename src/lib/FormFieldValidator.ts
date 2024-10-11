@@ -31,8 +31,11 @@ export class FormFieldValidator<T, FormType extends object>
         return value.length < rule.min ? rule.message : null;
 
       case "min":
+        if (value === "" || value === null || value === undefined) {
+          return "Cannot be empty";
+        }
         if (isNaN(Number(value))) {
-          throw Error("Min value rule only work with numbers");
+          throw new Error("Min value rule only work with numbers");
         }
         return Number(value) >= rule.min ? null : rule.message;
 

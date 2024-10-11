@@ -12,6 +12,7 @@ export const ContainedButton = (
     disabled,
     prefixIcon,
     className,
+    form,
   } = props;
 
   return (
@@ -27,6 +28,7 @@ export const ContainedButton = (
       <button
         className="w-full h-full outline-none border-none flex justify-center items-center"
         type={type}
+        form={form}
         disabled={disabled || loading}
       >
         <div className="flex flex-row gap-2 items-center">

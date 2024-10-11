@@ -12,7 +12,7 @@ export const useAuthService = () => {
 
   const login = useCallback(
     async (data: LoginData): Promise<LoginResponse> => {
-      return axiosInstance.post("/login", data);
+      return (await axiosInstance.post("/login", data)).data;
     },
     [axiosInstance]
   );

@@ -23,6 +23,7 @@ export type GlobalButtonProps = {
   disabled?: boolean;
   prefixIcon?: ReactNode;
   className?: string;
+  form?: string;
 };
 
 export type ContainedButtonProps = {
@@ -31,6 +32,16 @@ export type ContainedButtonProps = {
 
 export type LoginData = {
   walletAddress: string;
+};
+
+export type PickupRequestInput = {
+  size: number | "";
+  addressId: string;
+};
+
+export type AddressInput = {
+  addressType: UserAddressType | "";
+  address: string;
 };
 
 export type LoginResponse = {
@@ -49,6 +60,21 @@ export type TRecyclable = {
   image: string;
   unit: RecyclableUnit;
   price_per_unit: number;
+};
+
+export enum UserAddressType {
+  Home = "Home",
+  Work = "Work",
+}
+
+export type TUserAddress = {
+  _id: string;
+  address: string;
+  addressType: UserAddressType;
+};
+
+export type TPickupRequest = {
+  _id: string;
 };
 
 export type LoginVerificationData = {

@@ -34,7 +34,7 @@ export const TextButton = (props: GlobalButtonProps) => {
             <>
               {prefixIcon && prefixIcon}
               <p
-                className={`text-[14px] leading-[17.07px] text-[#228B22] font-montserrat font-semibold`}
+                className={`text-[14px] leading-[17.07px] text-[#228B22] font-montserrat font-normal`}
               >
                 {label}
               </p>
