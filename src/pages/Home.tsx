@@ -59,9 +59,9 @@ const DashboardPage: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 font-montserrat p-4 md:p-8">
-      <div className={selectedRecyclable ? "hidden md:block" : ""}>
-        <div className={"flex-1 flex flex-col gap-6"}>
+    <div className="flex flex-col md:!flex-row gap-8 font-montserrat p-4 md:p-8">
+      <div className={`${selectedRecyclable ? "hidden md:block" : ""} flex-1`}>
+        <div className={"flex flex-col gap-6"}>
           <SimpleAnimatedComponent>
             <div className="w-full bg-[#228B22] p-4 rounded-[20px] flex flex-row items-center gap-8">
               <div className="flex-1">

@@ -67,6 +67,13 @@ export enum UserAddressType {
   Work = "Work",
 }
 
+export enum PickupRequestStatus {
+  pending = "pending",
+  accepted = "accepted",
+  processing = "processing",
+  complete = "complete",
+}
+
 export type TUserAddress = {
   _id: string;
   address: string;
@@ -75,6 +82,15 @@ export type TUserAddress = {
 
 export type TPickupRequest = {
   _id: string;
+  address: TUserAddress;
+  item: TRecyclable;
+  size: number;
+  amount: number;
+  pickup_date: string;
+  date_completed: string;
+  status: PickupRequestStatus;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type LoginVerificationData = {

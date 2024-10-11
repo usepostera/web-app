@@ -25,7 +25,7 @@ const NavItem: React.FC<NavItemProps> = (props) => {
   }, [isActive]);
 
   return (
-    <Link to={route ?? "#"} className="w-full">
+    <Link to={route ?? "#"} className="w-full cursor-pointer">
       <button
         type="button"
         className={`transition-all duration-300 ease-in-out py-[8px] ps-[16px] pe-[40px] w-full rounded-[5px] h-[40px] ${

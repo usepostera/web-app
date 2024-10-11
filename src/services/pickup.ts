@@ -19,5 +19,20 @@ export const usePickupService = () => {
     [axiosInstance]
   );
 
-  return { requestNewPickup };
+  const getMyPickups = useCallback(
+    async (
+      page = 1
+    ): Promise<{
+      data: TPickupRequest[];
+      total: number;
+      page: number;
+      totalPages: number;
+    }> => {
+      return (await axiosInstance.get(`/pickup/own?page=${page}&limit=20`))
+        .data;
+    },
+    [axiosInstance]
+  );
+
+  return { requestNewPickup, getMyPickups };
 };

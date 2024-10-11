@@ -6,6 +6,7 @@ import {
   FormFieldValidator,
 } from "../../lib/FormFieldValidator";
 import { ChooseAddress, Review, SelectSize } from "./Steps";
+import Button from "../Button";
 
 type Props = {
   recyclable: TRecyclable;
@@ -69,6 +70,10 @@ const PickupRequest: React.FC<Props> = (props) => {
           onComplete={onClose}
         />
       )}
+
+      <div className="my-4">
+        <Button.Outlined label="Cancel" onClick={onClose} />
+      </div>
     </div>
   );
 };

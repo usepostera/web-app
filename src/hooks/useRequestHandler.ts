@@ -2,6 +2,7 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useLogout } from "./useLogout";
 import { parseApiError } from "../lib/parseError";
+import toast from "react-hot-toast";
 
 export const useRequestHandler = <T extends (...args: any[]) => any>(
   fn: T,
@@ -35,6 +36,7 @@ export const useRequestHandler = <T extends (...args: any[]) => any>(
           onError(message);
         } else {
           // show error
+          toast.error(message);
         }
         return;
       } finally {

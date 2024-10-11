@@ -6,8 +6,16 @@ import NotificationIcon from "../assets/svgs/notification.svg";
 import TruckIcon from "../assets/svgs/truck.svg";
 import AwardIcon from "../assets/svgs/award.svg";
 import ProfileIcon from "../assets/svgs/profile-circle.svg";
+import { useLocation } from "react-router-dom";
+
+const LOCATION_MAPPINGS = {
+  home: "/",
+  pickup: "/pickups",
+};
 
 const AppSidebar = () => {
+  const { pathname } = useLocation();
+
   return (
     <aside className="hidden md:block w-64 bg-[#EFEFEF80] fixed h-full z-20">
       <div className="p-4 h-[70px] text-lg font-semibold bg-[#f2f2f2] flex flex-row items-center">
@@ -20,7 +28,12 @@ const AppSidebar = () => {
       <nav className="px-4 mt-12">
         <ul className="mt-4 space-y-2">
           <li>
-            <NavItem label="Home" isActive={true} route="/" Icon={HomeIcon} />
+            <NavItem
+              label="Home"
+              isActive={pathname === LOCATION_MAPPINGS.home}
+              route="/"
+              Icon={HomeIcon}
+            />
           </li>
 
           <li>
@@ -32,7 +45,12 @@ const AppSidebar = () => {
           </li>
 
           <li>
-            <NavItem label="Pickups" route="/pickups" Icon={TruckIcon} />
+            <NavItem
+              label="Pickups"
+              route="/pickups"
+              Icon={TruckIcon}
+              isActive={pathname.startsWith(LOCATION_MAPPINGS.pickup)}
+            />
           </li>
 
           <li>
