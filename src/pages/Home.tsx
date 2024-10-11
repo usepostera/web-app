@@ -14,6 +14,7 @@ import {
 import { RecyclableCard } from "../components/RecyclableCard";
 import { TRecyclable } from "../@types";
 import PickupRequest from "../components/PickupRequest";
+import Leaderboard from "../components/Leaderboard";
 
 const DashboardPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -105,6 +106,8 @@ const DashboardPage: React.FC = () => {
       </div>
 
       <div className="flex-1 max-w-[380px]">
+        {!selectedRecyclable && <Leaderboard />}
+
         {selectedRecyclable && (
           <PickupRequest
             recyclable={selectedRecyclable}

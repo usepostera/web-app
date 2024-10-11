@@ -9,6 +9,7 @@ import { useUserAddress } from "../../../hooks/useUserAddress";
 import Button from "../../Button";
 import { usePickupService } from "../../../services/pickup";
 import { useRequestHandler } from "../../../hooks/useRequestHandler";
+import toast from "react-hot-toast";
 
 type Props = {
   recyclable: TRecyclable;
@@ -34,6 +35,7 @@ export const Review: React.FC<Props> = (props) => {
     if (validate()) {
       const result = await trigger({ ...form, recyclable: _id });
       if (result) {
+        toast.success("Pickup request submitted!");
         onComplete();
       }
     }
