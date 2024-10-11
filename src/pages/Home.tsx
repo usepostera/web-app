@@ -59,53 +59,69 @@ const DashboardPage: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-row gap-8 font-montserrat p-8">
-      <div className="flex-1 flex flex-col gap-6">
-        <SimpleAnimatedComponent>
-          <div className="w-full bg-[#228B22] p-4 rounded-[20px] flex flex-row items-center gap-8">
-            <div className="flex-1">
-              <h3 className="text-[32px] leading-[39.01px] font-semibold text-white max-w-[253px] mb-4">
-                It&apos;s time to recycle
-              </h3>
+    <div className="flex flex-col md:flex-row gap-8 font-montserrat p-4 md:p-8">
+      <div className={selectedRecyclable ? "hidden md:block" : ""}>
+        <div className={"flex-1 flex flex-col gap-6"}>
+          <SimpleAnimatedComponent>
+            <div className="w-full bg-[#228B22] p-4 rounded-[20px] flex flex-row items-center gap-8">
+              <div className="flex-1">
+                <h3 className="text-[28px] md:text-[32px] leading-[34.13px] md:leading-[39.01px] font-semibold text-white max-w-[253px] mb-4">
+                  It&apos;s time to recycle
+                </h3>
 
-              <p className="text-[18px] leading-[21.94px] text-white max-w-[271px]">
-                Welcome to recycle pro. Here, we save the world by recycling
-                waste and paying you for it
-              </p>
+                <p className="text-[14px] md:text-[18px] leading-[17.07px] md:leading-[21.94px] text-white max-w-[271px]">
+                  Welcome to recycle pro. Here, we save the world by recycling
+                  waste and paying you for it
+                </p>
+              </div>
+
+              <div>
+                <img
+                  src="/pngs/image2.png"
+                  className="w-[161px] h-[161px] md:w-[199px] md:h-[199px] object-contain"
+                  alt=""
+                />
+              </div>
             </div>
+          </SimpleAnimatedComponent>
 
-            <div>
-              <img
-                src="/pngs/image2.png"
-                className="w-[199px] h-[199px] object-contain"
-                alt=""
-              />
+          <SimpleAnimatedComponent>
+            <Inputs.Text
+              placeholder="Search recyclables"
+              className="!rounded-[40px] h-[40px] pl-4 !border-[#0000004D]"
+              prefixIcon={<SearchIcon />}
+            />
+          </SimpleAnimatedComponent>
+
+          <div className="hidden md:block">
+            <div className="flex flex-row flex-wrap gap-2 md:gap-6">
+              {!loading &&
+                recyclables.map((recyclable) => (
+                  <RecyclableCard
+                    data={recyclable}
+                    key={recyclable._id}
+                    onSelect={onSelect}
+                    selected={selectedRecyclableId === recyclable._id}
+                  />
+                ))}
             </div>
           </div>
-        </SimpleAnimatedComponent>
 
-        <SimpleAnimatedComponent>
-          <Inputs.Text
-            placeholder="Search recyclables"
-            className="!rounded-[40px] h-[40px] pl-4 !border-[#0000004D]"
-            prefixIcon={<SearchIcon />}
-          />
-        </SimpleAnimatedComponent>
-
-        <div className="flex flex-row flex-wrap gap-6">
-          {!loading &&
-            recyclables.map((recyclable) => (
-              <RecyclableCard
-                data={recyclable}
-                key={recyclable._id}
-                onSelect={onSelect}
-                selected={selectedRecyclableId === recyclable._id}
-              />
-            ))}
+          <div className="block md:hidden grid grid-cols-2 gap-2">
+            {!loading &&
+              recyclables.map((recyclable) => (
+                <RecyclableCard
+                  data={recyclable}
+                  key={recyclable._id}
+                  onSelect={onSelect}
+                  selected={selectedRecyclableId === recyclable._id}
+                />
+              ))}
+          </div>
         </div>
       </div>
 
-      <div className="flex-1 max-w-[380px]">
+      <div className="flex-1 md:max-w-[380px]">
         {!selectedRecyclable && <Leaderboard />}
 
         {selectedRecyclable && (

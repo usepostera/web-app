@@ -9,7 +9,7 @@ import ProfileIcon from "../assets/svgs/profile-circle.svg";
 
 const AppSidebar = () => {
   return (
-    <aside className="w-64 bg-[#EFEFEF80] fixed h-full z-20">
+    <aside className="hidden md:block w-64 bg-[#EFEFEF80] fixed h-full z-20">
       <div className="p-4 h-[70px] text-lg font-semibold bg-[#f2f2f2] flex flex-row items-center">
         <div className="flex flex-row gap-2 items-center">
           <Logo height={50} width={50} />

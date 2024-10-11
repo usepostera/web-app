@@ -20,12 +20,12 @@ export const RecyclableCard: React.FC<Props> = (props) => {
   return (
     <SimpleAnimatedComponent className="delay-300">
       <RippleEffect
-        className={`rounded-[20px] p-2 ${
+        className={`w-full md:w-auto rounded-[20px] p-2 ${
           selected ? "bg-[#228B2280]" : "bg-transparent"
         } transition-all duration-300`}
         onClick={onSelect ? () => onSelect(props.data) : undefined}
       >
-        <div className="w-[184px] cursor-pointer">
+        <div className="md:w-[184px] cursor-pointer">
           <img
             src={`${baseURL}/${image}`}
             alt={name}

@@ -12,11 +12,11 @@ const AppWrapper = () => {
         <AppSidebar />
 
         {/* Main Content with Header */}
-        <div className="flex-1 ml-64">
+        <div className="flex-1 md:ml-64">
           <AppHeader />
 
           {/* Content */}
-          <main className="p-6 mt-16">
+          <main className="md:p-6 mt-16">
             <Outlet />
           </main>
         </div>
