@@ -11,6 +11,8 @@ import { useLocation } from "react-router-dom";
 const LOCATION_MAPPINGS = {
   home: "/",
   pickup: "/pickups",
+  volunteer: "/volunteer",
+  leaderboard: "/leaderboard",
 };
 
 const AppSidebar = () => {
@@ -58,6 +60,16 @@ const AppSidebar = () => {
               label="Leaderboard"
               route="/leaderboard"
               Icon={AwardIcon}
+              isActive={pathname.startsWith(LOCATION_MAPPINGS.leaderboard)}
+            />
+          </li>
+
+          <li>
+            <NavItem
+              label="Volunteer"
+              route="/volunteer"
+              Icon={AwardIcon}
+              isActive={pathname.startsWith(LOCATION_MAPPINGS.volunteer)}
             />
           </li>
 
