@@ -16,7 +16,7 @@ const AddressList: React.FC<Props> = (props) => {
 
   return (
     <SimpleAnimatedComponent className="w-full">
-      <div className="w-full flex flex-col items-start">
+      <div className="w-full flex flex-col items-start gap-2">
         {!loading && adddresses.length === 0 && (
           <p className="font-montserrat fomt-medium text-xl">
             No address found.

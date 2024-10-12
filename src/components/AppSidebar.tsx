@@ -13,6 +13,7 @@ const LOCATION_MAPPINGS = {
   pickup: "/pickups",
   volunteer: "/volunteer",
   leaderboard: "/leaderboard",
+  account: "/account",
 };
 
 const AppSidebar = () => {
@@ -74,7 +75,12 @@ const AppSidebar = () => {
           </li>
 
           <li>
-            <NavItem label="Account" route="/account" Icon={ProfileIcon} />
+            <NavItem
+              label="Account"
+              route="/account"
+              Icon={ProfileIcon}
+              isActive={pathname.startsWith(LOCATION_MAPPINGS.account)}
+            />
           </li>
         </ul>
       </nav>

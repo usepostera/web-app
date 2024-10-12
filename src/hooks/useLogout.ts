@@ -1,13 +1,16 @@
 import { useCallback } from "react";
 import { useAppDispatch } from "../store/store";
 import { logout } from "../store/authSlice";
+import { useDisconnect } from "wagmi";
 
 export const useLogout = () => {
   const dispatch = useAppDispatch();
+  const { disconnect } = useDisconnect();
 
-  const signout = useCallback(() => {
+  const signout = useCallback(async () => {
+    disconnect();
     dispatch(logout());
-  }, [dispatch]);
+  }, [disconnect, dispatch]);
 
   return signout;
 };

@@ -2,14 +2,20 @@ import {
   ConnectWallet,
   Wallet,
   WalletDropdown,
+  WalletDropdownBasename,
   WalletDropdownDisconnect,
 } from "@coinbase/onchainkit/wallet";
 import Inputs from "./Input";
 import SearchIcon from "../assets/svgs/search_icon.svg";
-import { Address, Avatar, Identity, Name } from "@coinbase/onchainkit/identity";
+import {
+  Address,
+  Avatar,
+  EthBalance,
+  Identity,
+  Name,
+} from "@coinbase/onchainkit/identity";
 import { color } from "@coinbase/onchainkit/theme";
 import { useLocation } from "react-router-dom";
-import { useAccount } from "wagmi";
 import Logo from "../assets/svgs/logo-transparent-2.svg";
 import { IoIosMenu } from "react-icons/io";
 import { useEffect, useState } from "react";
@@ -18,11 +24,11 @@ const pathnameMapping: { [key: string]: string } = {
   "/": "Home",
   "/pickups": "Pickups",
   "/volunteer": "Volunteer",
+  "/account": "Account",
 };
 
 const AppHeader = () => {
   const { pathname } = useLocation();
-  const { chain, address } = useAccount();
 
   const [title, setTitle] = useState(pathnameMapping[pathname]);
   const [showTitle, setShowTitle] = useState(true);
@@ -39,17 +45,13 @@ const AppHeader = () => {
     if (pathname === "/" && title !== pathnameMapping["/"]) {
       changeText(pathnameMapping[pathname]);
     } else {
-      const newTitle = pathnameMapping[pathname];
+      const formatPathName = `/${pathname.split("/")[1]}`;
+      const newTitle = pathnameMapping[formatPathName];
 
       if (newTitle && newTitle !== title) {
         changeText(newTitle);
       }
     }
-
-    return () => {
-      setTitle(pathnameMapping[pathname]);
-      setShowTitle(true);
-    };
   }, [pathname, title]);
 
   return (
@@ -80,15 +82,17 @@ const AppHeader = () => {
       <div className="flex flex-row gap-4">
         <Wallet>
           <ConnectWallet className="bg-[#0000000D] hover:bg-[#0000004D]">
-            <Avatar className="h-6 w-6" address={address} chain={chain} />
-            <Name address={address} chain={chain} />
+            <Avatar className="h-6 w-6" />
+            <Name />
           </ConnectWallet>
           <WalletDropdown>
             <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
               <Avatar />
               <Name />
               <Address className={color.foregroundMuted} />
+              <EthBalance />
             </Identity>
+            <WalletDropdownBasename />
             <WalletDropdownDisconnect />
           </WalletDropdown>
         </Wallet>

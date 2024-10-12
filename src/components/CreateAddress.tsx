@@ -27,10 +27,11 @@ const validators: Validator<AddressInput> = {
 
 type Props = {
   onComplete?: VoidFunction;
+  showClose?: boolean;
 };
 
 const CreateAddress: React.FC<Props> = (props) => {
-  const { onComplete } = props;
+  const { onComplete, showClose = false } = props;
 
   const dispatch = useAppDispatch();
 
@@ -96,13 +97,17 @@ const CreateAddress: React.FC<Props> = (props) => {
             </span>
           )}
 
-          <div className="mt-8">
+          <div className="mt-8 space-y-2">
             <Button.Contained
               label="Save"
               type="button"
               onClick={handleSubmit}
               loading={loading}
             />
+
+            {showClose && onComplete && (
+              <Button.Outlined label="Cancel" onClick={onComplete} />
+            )}
           </div>
         </div>
       </form>
