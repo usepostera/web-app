@@ -13,6 +13,7 @@ function App() {
         <Route element={<AppWrapper />}>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/pickups" element={<PickupRequestPage />} />
+          <Route path="/pickups/:id" element={<PickupRequestPage />} />
           <Route path="/volunteer" element={<VolunteerPage />} />
         </Route>
 

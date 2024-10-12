@@ -34,5 +34,13 @@ export const usePickupService = () => {
     [axiosInstance]
   );
 
-  return { requestNewPickup, getMyPickups };
+  const getPickupById = useCallback(
+    async (id: string) => {
+      const res = await axiosInstance.get(`/pickup/${id}`);
+      return res.data;
+    },
+    [axiosInstance]
+  );
+
+  return { requestNewPickup, getMyPickups, getPickupById };
 };
