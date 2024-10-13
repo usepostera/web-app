@@ -14,6 +14,7 @@ const LOCATION_MAPPINGS = {
   volunteer: "/volunteer",
   leaderboard: "/leaderboard",
   account: "/account",
+  notification: "/notifications",
 };
 
 const AppSidebar = () => {
@@ -44,6 +45,7 @@ const AppSidebar = () => {
               label="Notifications"
               route="/notifications"
               Icon={NotificationIcon}
+              isActive={pathname.startsWith(LOCATION_MAPPINGS.notification)}
             />
           </li>
 

@@ -74,10 +74,23 @@ export enum PickupRequestStatus {
   complete = "complete",
 }
 
+export enum NotificationAction {
+  acceptMeasuredUnit,
+}
+
 export type TUserAddress = {
   _id: string;
   address: string;
   addressType: UserAddressType;
+};
+
+export type TNotification = {
+  _id: string;
+  message: string;
+  action: NotificationAction | null;
+  refId: string | null;
+  createdAt: string;
+  action_complete: boolean;
 };
 
 export type TPickupRequest = {

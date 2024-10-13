@@ -23,7 +23,7 @@ export const TextButton = (props: GlobalButtonProps) => {
       `}
     >
       <button
-        className="w-full h-full outline-none border-none flex justify-center items-center"
+        className="w-full h-full outline-none border-none flex justify-center items-center pointer-events-none"
         type={type}
         disabled={disabled || loading}
       >

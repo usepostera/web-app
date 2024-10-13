@@ -25,6 +25,7 @@ const pathnameMapping: { [key: string]: string } = {
   "/pickups": "Pickups",
   "/volunteer": "Volunteer",
   "/account": "Account",
+  "/notifications": "Notifications",
 };
 
 const AppHeader = () => {

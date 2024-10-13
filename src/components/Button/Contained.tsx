@@ -26,7 +26,7 @@ export const ContainedButton = (
       `}
     >
       <button
-        className="w-full h-full outline-none border-none flex justify-center items-center"
+        className="w-full h-full outline-none border-none flex justify-center items-center pointer-events-none"
         type={type}
         form={form}
         disabled={disabled || loading}

@@ -9,6 +9,7 @@ import AccountPage from "./pages/Account";
 import ManageAddressPage from "./pages/ManageAddress";
 import NotificationSettingsPage from "./pages/NotificationSettings";
 import LogoutPage from "./pages/Auth/Logout";
+import NotificationPage from "./pages/Notification";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/pickups" element={<PickupRequestPage />} />
           <Route path="/pickups/:id" element={<PickupRequestPage />} />
           <Route path="/volunteer" element={<VolunteerPage />} />
+          <Route path="/notifications" element={<NotificationPage />} />
           <Route path="/account" element={<AccountPage />}>
             <Route path="/account" element={null} />
             <Route path="/account/addresses" element={<ManageAddressPage />} />
