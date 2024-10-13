@@ -25,7 +25,7 @@ export const OutlinedButton = (
       `}
     >
       <button
-        className="w-full h-full outline-none border-none flex justify-center items-center pointer-events-none"
+        className="w-full h-full outline-none border-none flex justify-center items-center"
         type={type}
         disabled={disabled || loading}
       >
