@@ -1,8 +1,13 @@
 import { ReactNode } from "react";
 
 export type TUser = {
-  email: string;
+  _id: string;
+  walletAddress: string;
+  monthlyScores: { [key: string]: number };
+  coins: number;
 };
+
+export type TLeaderboardData = Omit<TUser, "coins">;
 
 export interface IFormFieldValidator<T, FormType extends object> {
   validate: (value: T, form: FormType) => TValidatorError;

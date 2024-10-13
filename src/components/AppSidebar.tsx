@@ -58,14 +58,14 @@ const AppSidebar = () => {
             />
           </li>
 
-          <li>
+          {/* <li>
             <NavItem
               label="Leaderboard"
               route="/leaderboard"
               Icon={AwardIcon}
               isActive={pathname.startsWith(LOCATION_MAPPINGS.leaderboard)}
             />
-          </li>
+          </li> */}
 
           <li>
             <NavItem
