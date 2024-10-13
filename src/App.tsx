@@ -10,34 +10,41 @@ import ManageAddressPage from "./pages/ManageAddress";
 import NotificationSettingsPage from "./pages/NotificationSettings";
 import LogoutPage from "./pages/Auth/Logout";
 import NotificationPage from "./pages/Notification";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route element={<AppWrapper />}>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/pickups" element={<PickupRequestPage />} />
-          <Route path="/pickups/:id" element={<PickupRequestPage />} />
-          <Route path="/volunteer" element={<VolunteerPage />} />
-          <Route path="/notifications" element={<NotificationPage />} />
-          <Route path="/account" element={<AccountPage />}>
-            <Route path="/account" element={null} />
-            <Route path="/account/addresses" element={<ManageAddressPage />} />
-            <Route
-              path="/account/notification-settings"
-              element={<NotificationSettingsPage />}
-            />
+    <>
+      <Toaster />
+      <Router>
+        <Routes>
+          <Route element={<AppWrapper />}>
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="/pickups" element={<PickupRequestPage />} />
+            <Route path="/pickups/:id" element={<PickupRequestPage />} />
+            <Route path="/volunteer" element={<VolunteerPage />} />
+            <Route path="/notifications" element={<NotificationPage />} />
+            <Route path="/account" element={<AccountPage />}>
+              <Route path="/account" element={null} />
+              <Route
+                path="/account/addresses"
+                element={<ManageAddressPage />}
+              />
+              <Route
+                path="/account/notification-settings"
+                element={<NotificationSettingsPage />}
+              />
+            </Route>
           </Route>
-        </Route>
 
-        <Route element={<AuthWrapper />}>
-          <Route path="/login" element={<LoginPage />} />
-        </Route>
+          <Route element={<AuthWrapper />}>
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
 
-        <Route path="/logout" element={<LogoutPage />} />
-      </Routes>
-    </Router>
+          <Route path="/logout" element={<LogoutPage />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

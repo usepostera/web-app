@@ -1,13 +1,10 @@
 import { Outlet } from "react-router-dom";
 import AppHeader from "./AppHeader";
 import AppSidebar from "./AppSidebar";
-import { Toaster } from "react-hot-toast";
 
 const AppWrapper = () => {
   return (
     <>
-      <Toaster />
-
       <div className="flex h-screen">
         <AppSidebar />
 
