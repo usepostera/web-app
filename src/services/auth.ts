@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useAppSelector } from "../store/store";
 import instance from "../lib/axiosInstance";
-import { LoginData, LoginResponse, TUser } from "../@types";
+import { LoginData, LoginResponse, TUpdateMe, TUser } from "../@types";
 
 export const useAuthService = () => {
   const token = useAppSelector((state) => state.auth.token);
@@ -21,5 +21,12 @@ export const useAuthService = () => {
     return (await axiosInstance.get("/me")).data;
   }, [axiosInstance]);
 
-  return { login, getMe };
+  const updateMe = useCallback(
+    async (data: TUpdateMe): Promise<TUser> => {
+      return (await axiosInstance.patch("/me", data)).data;
+    },
+    [axiosInstance]
+  );
+
+  return { login, getMe, updateMe };
 };

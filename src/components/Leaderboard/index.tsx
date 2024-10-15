@@ -6,6 +6,7 @@ import Button from "../Button";
 import { Avatar, Name } from "@coinbase/onchainkit/identity";
 import { useAccount } from "wagmi";
 import { formatLargeNumber } from "../../lib/helpers";
+import { useMe } from "../../hooks/useMe";
 const Leaderboard: React.FC = () => {
   const month = useMemo(
     () =>
@@ -20,11 +21,11 @@ const Leaderboard: React.FC = () => {
     leaderboard: items,
     refresh,
     position,
-    me,
-    loadingMe,
     totalUsers,
     percentile,
   } = useLeaderboard();
+
+  const { me, loading: loadingMe } = useMe();
 
   const { address, isConnected, chain } = useAccount();
 

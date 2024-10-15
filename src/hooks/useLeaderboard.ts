@@ -1,10 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { useRequestHandler } from "./useRequestHandler";
 import { useLeaderboardService } from "../services/leaderboard";
 import { initializeLeaderboard } from "../store/leaderboardSlice";
-import { TUser } from "../@types";
-import { useAuthService } from "../services/auth";
 
 export const useLeaderboard = () => {
   const dispatch = useAppDispatch();
@@ -13,19 +11,6 @@ export const useLeaderboard = () => {
   const position = useAppSelector((state) => state.leaderboard.position);
   const totalUsers = useAppSelector((state) => state.leaderboard.totalUsers);
   const percentile = useAppSelector((state) => state.leaderboard.percentile);
-
-  const [me, setMe] = useState<TUser | null>(null);
-
-  const { getMe } = useAuthService();
-  const { trigger: triggerGetMe, loading: loadingMe } =
-    useRequestHandler(getMe);
-  const httpFetchMe = useCallback(async () => {
-    const result = await triggerGetMe();
-
-    if (result) {
-      setMe(result);
-    }
-  }, [triggerGetMe]);
 
   const { getMonthly } = useLeaderboardService();
   const { trigger, loading } = useRequestHandler(getMonthly);
@@ -44,19 +29,11 @@ export const useLeaderboard = () => {
     }
   }, [initialized, httpFetchData]);
 
-  useEffect(() => {
-    if (!me) {
-      httpFetchMe();
-    }
-  }, [me, httpFetchMe]);
-
   return {
     loading,
     leaderboard,
     refresh: httpFetchData,
     position,
-    me,
-    loadingMe,
     totalUsers,
     percentile,
   };

@@ -3,15 +3,19 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { useLogout } from "./useLogout";
 import { parseApiError } from "../lib/parseError";
 import toast from "react-hot-toast";
+import { TRawApiError } from "../@types";
 
 export const useRequestHandler = <T extends (...args: any[]) => any>(
   fn: T,
-  options?: { onError?: (msg: string) => void }
+  options?: {
+    onError?: (msg: string) => void;
+    rawError?: (data: TRawApiError) => boolean;
+  }
 ) => {
   const [loading, setLoading] = useState(false);
   const loadingRef = useRef(false);
 
-  const { onError } = options ?? {};
+  const { onError, rawError } = options ?? {};
 
   const logout = useLogout();
 
@@ -30,9 +34,20 @@ export const useRequestHandler = <T extends (...args: any[]) => any>(
           return;
         }
         const message = parseApiError(error);
+
         if (error.response?.status === 401) {
           logout();
-        } else if (onError) {
+          return;
+        }
+
+        if (rawError && error?.response?.data) {
+          const handled = rawError(error?.response?.data);
+          if (handled) {
+            return;
+          }
+        }
+
+        if (onError) {
           onError(message);
         } else {
           // show error
@@ -44,7 +59,7 @@ export const useRequestHandler = <T extends (...args: any[]) => any>(
         setLoading(false);
       }
     },
-    [fn, onError, logout]
+    [fn, rawError, onError, logout]
   );
 
   const data = useMemo(

@@ -23,3 +23,7 @@ export const pickupStatusColors = {
     foreground: "#0c5460",
   }, // Light blue background, dark blue text
 };
+
+export enum ErrorCodes {
+  RequiredEmailOtp = 1000,
+}

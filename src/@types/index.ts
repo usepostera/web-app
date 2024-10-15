@@ -1,10 +1,13 @@
 import { ReactNode } from "react";
+import { ErrorCodes } from "../lib/constants";
 
 export type TUser = {
   _id: string;
   walletAddress: string;
   monthlyScores: { [key: string]: number };
   coins: number;
+  email_notifications: boolean;
+  email?: string;
 };
 
 export type TLeaderboardData = Omit<TUser, "coins">;
@@ -37,6 +40,13 @@ export type ContainedButtonProps = {
 
 export type LoginData = {
   walletAddress: string;
+};
+
+export type TUpdateMe = {
+  email_notifications?: boolean;
+  email?: string;
+  session?: string;
+  code?: string;
 };
 
 export type PickupRequestInput = {
@@ -118,3 +128,11 @@ export type LoginVerificationData = {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type OutlinedButtonProps = {};
+
+export type RequiresEmailOtp = {
+  code: ErrorCodes.RequiredEmailOtp;
+  message: string;
+  session: string;
+};
+
+export type TRawApiError = RequiresEmailOtp;
