@@ -65,7 +65,7 @@ const Leaderboard: React.FC = () => {
                       Rank #{position}
                     </p>
                     <p className="text-[12px] leading-[14.63px]">
-                      {me?.monthlyScores[month]} points
+                      {me?.monthlyScores[month] ?? 0} points
                     </p>
                   </div>
 
