@@ -14,7 +14,8 @@ import { PickupDetails } from "../components/PickupDetails";
 
 const PickupRequestPage: React.FC = () => {
   const { id } = useParams();
-  const { pickups, loading, loadMore, hasMore } = usePickupRequets();
+  const { pickups, loading, total, totalEarned, loadMore, hasMore } =
+    usePickupRequets();
 
   return (
     <div className="flex flex-col md:!flex-row gap-8 md:gap-[80px] font-montserrat p-4 md:p-8">
@@ -26,9 +27,9 @@ const PickupRequestPage: React.FC = () => {
             </h3>
 
             <div className="flex flex-row gap-4 items-stretch">
-              <PickupOverview title="Total Pickups" count={67} />
+              <PickupOverview title="Total Pickups" count={total} />
 
-              <PickupOverview title="Coins Earned" count={67} />
+              <PickupOverview title="Coins Earned" count={totalEarned} />
             </div>
           </div>
         </SimpleAnimatedComponent>

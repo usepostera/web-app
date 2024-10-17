@@ -72,7 +72,7 @@ const Leaderboard: React.FC = () => {
                   <div className="space-y-1">
                     {percentile && (
                       <p className="text-[16px] leading-[19.5px]">
-                        Top {percentile}%
+                        {percentile}
                       </p>
                     )}
                     {totalUsers && (

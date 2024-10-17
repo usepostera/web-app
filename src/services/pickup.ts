@@ -27,6 +27,7 @@ export const usePickupService = () => {
       total: number;
       page: number;
       totalPages: number;
+      totalCoinsEarned: number;
     }> => {
       return (await axiosInstance.get(`/pickup/own?page=${page}&limit=20`))
         .data;
