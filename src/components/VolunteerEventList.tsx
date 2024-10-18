@@ -4,7 +4,6 @@ import { TVolunteerEvent } from "../@types";
 import RippleEffect from "./Ripple";
 import { InfiniteScroll } from "./InfiniteScroll";
 import { TuseVolunteerEvents } from "../hooks/useVolunteerEvents";
-import Button from "./Button";
 import { baseURL } from "../lib/axiosInstance";
 
 import LocationIcon from "../assets/svgs/location_2.svg";
@@ -20,17 +19,11 @@ type Props = {
 const VolunteerEventList: React.FC<Props> = (props) => {
   const { onSelect, selected } = props;
 
-  const { events: data, hasMore, loading, loadMore, reload } = props.data;
+  const { events: data, hasMore, loading, loadMore } = props.data;
 
   return (
     <SimpleAnimatedComponent className="w-full">
       <div className="w-full flex flex-col items-start">
-        {!selected && (
-          <div className="my-2">
-            <Button.Text label="Refresh" onClick={reload} disabled={loading} />
-          </div>
-        )}
-
         {!loading && data.length === 0 && (
           <p className="font-montserrat fomt-medium text-xl">No event found.</p>
         )}

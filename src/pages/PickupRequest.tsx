@@ -11,15 +11,25 @@ import RippleEffect from "../components/Ripple";
 import { InfiniteScroll } from "../components/InfiniteScroll";
 import { useNavigate, useParams } from "react-router-dom";
 import { PickupDetails } from "../components/PickupDetails";
+import useDeviceView from "../hooks/useDeviceView";
+import GoBack from "../components/GoBack";
 
 const PickupRequestPage: React.FC = () => {
   const { id } = useParams();
   const { pickups, loading, total, totalEarned, loadMore, hasMore } =
     usePickupRequets();
 
+  const isMobile = useDeviceView();
+
   return (
-    <div className="flex flex-col md:!flex-row gap-8 md:gap-[80px] font-montserrat p-4 md:p-8">
-      <div className="flex-1">
+    <div className="flex flex-col md:!flex-row md:gap-8 md:gap-[80px] font-montserrat p-4 md:p-8">
+      {isMobile && id && (
+        <div className="my-2">
+          <GoBack />
+        </div>
+      )}
+
+      <div className={`flex-1 ${id ? "hidden md:block" : ""}`}>
         <SimpleAnimatedComponent className="delay-300 mb-12">
           <div>
             <h3 className="text-[20px] leading-[24.38px] font-normal mb-4">
