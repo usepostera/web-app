@@ -11,6 +11,7 @@ import NotificationSettingsPage from "./pages/NotificationSettings";
 import LogoutPage from "./pages/Auth/Logout";
 import NotificationPage from "./pages/Notification";
 import { Toaster } from "react-hot-toast";
+import AccountWalletPage from "./pages/AccountWallet";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/notifications" element={<NotificationPage />} />
             <Route path="/account" element={<AccountPage />}>
               <Route path="/account" element={null} />
+              <Route path="/account/wallet" element={<AccountWalletPage />} />
               <Route
                 path="/account/addresses"
                 element={<ManageAddressPage />}

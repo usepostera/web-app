@@ -7,15 +7,7 @@ import TruckIcon from "../assets/svgs/truck.svg";
 import AwardIcon from "../assets/svgs/award.svg";
 import ProfileIcon from "../assets/svgs/profile-circle.svg";
 import { useLocation } from "react-router-dom";
-
-const LOCATION_MAPPINGS = {
-  home: "/",
-  pickup: "/pickups",
-  volunteer: "/volunteer",
-  leaderboard: "/leaderboard",
-  account: "/account",
-  notification: "/notifications",
-};
+import { LOCATION_MAPPINGS } from "../lib/constants";
 
 const AppSidebar = () => {
   const { pathname } = useLocation();
@@ -57,15 +49,6 @@ const AppSidebar = () => {
               isActive={pathname.startsWith(LOCATION_MAPPINGS.pickup)}
             />
           </li>
-
-          {/* <li>
-            <NavItem
-              label="Leaderboard"
-              route="/leaderboard"
-              Icon={AwardIcon}
-              isActive={pathname.startsWith(LOCATION_MAPPINGS.leaderboard)}
-            />
-          </li> */}
 
           <li>
             <NavItem

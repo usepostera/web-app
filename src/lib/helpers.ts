@@ -49,3 +49,7 @@ export const formatLargeNumber = (num: number): string => {
   // if (num >= 1e3) return `${(num / 1e3).toFixed(1)}K`;
   return num.toString();
 };
+
+export const numberWithCommas = (x: number) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};

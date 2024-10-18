@@ -18,7 +18,10 @@ import { color } from "@coinbase/onchainkit/theme";
 import { useLocation } from "react-router-dom";
 import Logo from "../assets/svgs/logo-transparent-2.svg";
 import { IoIosMenu } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { MobileNavMenu } from "./MobileNavMenu";
+import useDeviceView from "../hooks/useDeviceView";
+import RippleEffect from "./Ripple";
 
 const pathnameMapping: { [key: string]: string } = {
   "/": "Home",
@@ -33,6 +36,19 @@ const AppHeader = () => {
 
   const [title, setTitle] = useState(pathnameMapping[pathname]);
   const [showTitle, setShowTitle] = useState(true);
+  const isMobile = useDeviceView();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const openMenu = useCallback(() => {
+    setIsMenuOpen(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  }, [isMobile, isMenuOpen]);
 
   const changeText = (text: string) => {
     setShowTitle(false); // Hide text
@@ -56,53 +72,66 @@ const AppHeader = () => {
   }, [pathname, title]);
 
   return (
-    <header className="bg-[#F7F7F7] h-[70px] md:pr-8 fixed w-full z-10 top-0 left-0 md:pl-72 flex flex-row justify-between items-center">
-      <div
-        className={`hidden md:block font-montserrat text-[24px] leading-[29.26px] font-semibold text-black transition-opacity duration-300 ${
-          showTitle ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {title}
-      </div>
-
-      <div className="block md:hidden ">
-        <div className="ml-4 flex flex-row gap-2 items-center">
-          <Logo height={50} width={50} />
-          <h1 className="text-xl">Postera</h1>
-        </div>
-      </div>
-
-      <div className="hidden md:block max-w-[323px] flex-1">
-        <Inputs.Text
-          placeholder="Search here"
-          className="!bg-[#0000000D] border-none !rounded-[40px] h-[50px] pl-4"
-          prefixIcon={<SearchIcon />}
+    <>
+      {isMobile && (
+        <MobileNavMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
         />
-      </div>
+      )}
 
-      <div className="flex flex-row gap-4">
-        <Wallet>
-          <ConnectWallet className="bg-[#0000000D] hover:bg-[#0000004D]">
-            <Avatar className="h-6 w-6" />
-            <Name />
-          </ConnectWallet>
-          <WalletDropdown>
-            <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
-              <Avatar />
+      <header className="bg-[#F7F7F7] h-[70px] md:pr-8 fixed w-full z-10 top-0 left-0 md:pl-72 flex flex-row justify-between items-center">
+        <div
+          className={`hidden md:block font-montserrat text-[24px] leading-[29.26px] font-semibold text-black transition-opacity duration-300 ${
+            showTitle ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {title}
+        </div>
+
+        <div className="block md:hidden ">
+          <div className="ml-4 flex flex-row gap-2 items-center">
+            <Logo height={50} width={50} />
+            <h1 className="text-xl">Postera</h1>
+          </div>
+        </div>
+
+        <div className="hidden md:block max-w-[323px] flex-1">
+          <Inputs.Text
+            placeholder="Search here"
+            className="!bg-[#0000000D] border-none !rounded-[40px] h-[50px] pl-4"
+            prefixIcon={<SearchIcon />}
+          />
+        </div>
+
+        <div className="flex flex-row gap-4">
+          <Wallet>
+            <ConnectWallet className="bg-[#0000000D] hover:bg-[#0000004D]">
+              <Avatar className="h-6 w-6" />
               <Name />
-              <Address className={color.foregroundMuted} />
-              <EthBalance />
-            </Identity>
-            <WalletDropdownBasename />
-            <WalletDropdownDisconnect />
-          </WalletDropdown>
-        </Wallet>
+            </ConnectWallet>
+            <WalletDropdown>
+              <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
+                <Avatar />
+                <Name />
+                <Address className={color.foregroundMuted} />
+                <EthBalance />
+              </Identity>
+              <WalletDropdownBasename />
+              <WalletDropdownDisconnect />
+            </WalletDropdown>
+          </Wallet>
 
-        <button title="menu" type="button" className="block md:hidden mr-4">
-          <IoIosMenu size={30} />
-        </button>
-      </div>
-    </header>
+          <RippleEffect
+            title="menu"
+            className="block md:hidden mr-4 h-fit my-auto"
+            onClick={openMenu}
+          >
+            <IoIosMenu size={30} />
+          </RippleEffect>
+        </div>
+      </header>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import recyclableReducer from "./recyclableSlice";
 import userAddressReducer from "./addressSlice";
 import pickupRequestReducer from "./pickupRequestSlice";
 import leaderboardReducer from "./leaderboardSlice";
+import appReducer from "./appSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +23,7 @@ const store = configureStore({
     address: userAddressReducer,
     pickupRequest: pickupRequestReducer,
     leaderboard: leaderboardReducer,
+    app: appReducer,
   },
 });
 

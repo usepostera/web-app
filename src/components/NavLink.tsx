@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 type NavItemProps = {
   label: string;
-  Icon: React.FunctionComponent<SVGProps<SVGSVGElement>>;
+  Icon?: React.FunctionComponent<SVGProps<SVGSVGElement>>;
   route?: string;
   isActive?: boolean;
 };
@@ -25,19 +25,21 @@ const NavItem: React.FC<NavItemProps> = (props) => {
   }, [isActive]);
 
   return (
-    <Link to={route ?? "#"} className="w-full cursor-pointer">
+    <Link to={route ?? "#"} className="w-fit md:w-full cursor-pointer">
       <button
         type="button"
-        className={`transition-all duration-300 ease-in-out py-[8px] ps-[16px] pe-[40px] w-full rounded-[5px] h-[40px] ${
+        className={`transition-all duration-300 ease-in-out py-[8px] ps-[16px] pe-[16px] md:!pe-[40px] w-[131px] md:!w-full rounded-[32px] md:!rounded-[5px] h-[40px] ${
           !isActive ? "bg-transparent" : "bg-primary"
         }`}
       >
-        <div className="flex flex-row justify-start items-center w-full gap-4">
-          <Icon
-            color={isActive ? "#ffffff" : "#000000"}
-            height={20}
-            width={20}
-          />
+        <div className="flex flex-row justify-center md:!justify-start items-center w-full gap-4">
+          {Icon && (
+            <Icon
+              color={isActive ? "#ffffff" : "#000000"}
+              height={20}
+              width={20}
+            />
+          )}
 
           <span
             className={`block text-[14px] leading-[17.5px] font-normal font-montserrat transition-all duration-300 ease-in-out ${

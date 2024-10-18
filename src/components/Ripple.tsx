@@ -19,7 +19,7 @@ type RippleEffectProps = {
   className?: string;
   disabled?: boolean;
   skipDelay?: boolean;
-} & HTMLAttributes<HTMLDivElement>;
+} & HTMLAttributes<HTMLButtonElement>;
 
 const RippleEffect: React.FC<RippleEffectProps> = ({
   children,
@@ -30,9 +30,9 @@ const RippleEffect: React.FC<RippleEffectProps> = ({
   ...others
 }) => {
   const [ripples, setRipples] = useState<Ripple[]>([]);
-  const rippleContainerRef = useRef<HTMLDivElement | null>(null);
+  const rippleContainerRef = useRef<HTMLButtonElement | null>(null);
 
-  const createRipple = (event: MouseEvent<HTMLDivElement>) => {
+  const createRipple = (event: MouseEvent<HTMLButtonElement>) => {
     if (!rippleContainerRef.current || disabled) return;
 
     const rippleContainer = rippleContainerRef.current;
@@ -59,11 +59,12 @@ const RippleEffect: React.FC<RippleEffectProps> = ({
   };
 
   return (
-    <div
+    <button
       {...others}
       className={`ripple-container ${className}`}
       ref={rippleContainerRef}
       onClick={createRipple}
+      type="button"
     >
       {children}
       {ripples.map((ripple, index) => (
@@ -78,7 +79,7 @@ const RippleEffect: React.FC<RippleEffectProps> = ({
           }}
         />
       ))}
-    </div>
+    </button>
   );
 };
 

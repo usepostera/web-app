@@ -27,3 +27,12 @@ export const pickupStatusColors = {
 export enum ErrorCodes {
   RequiredEmailOtp = 1000,
 }
+
+export const LOCATION_MAPPINGS = {
+  home: "/",
+  pickup: "/pickups",
+  volunteer: "/volunteer",
+  leaderboard: "/leaderboard",
+  account: "/account",
+  notification: "/notifications",
+};
