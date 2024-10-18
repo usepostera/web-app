@@ -136,3 +136,23 @@ export type RequiresEmailOtp = {
 };
 
 export type TRawApiError = RequiresEmailOtp;
+
+export type TVolunteerEvent = {
+  _id: string;
+  image: string;
+  title: string;
+  limit?: number | "";
+  address_line1: string;
+  city: string;
+  state: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  organizer: string;
+  mapLink?: string;
+  createdAt: string;
+  user: {
+    name: string;
+    email: string;
+  };
+};

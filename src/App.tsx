@@ -24,6 +24,7 @@ function App() {
             <Route path="/pickups" element={<PickupRequestPage />} />
             <Route path="/pickups/:id" element={<PickupRequestPage />} />
             <Route path="/volunteer" element={<VolunteerPage />} />
+            <Route path="/volunteer/:id" element={<VolunteerPage />} />
             <Route path="/notifications" element={<NotificationPage />} />
             <Route path="/account" element={<AccountPage />}>
               <Route path="/account" element={null} />
