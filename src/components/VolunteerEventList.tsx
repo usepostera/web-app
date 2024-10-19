@@ -65,41 +65,43 @@ const EventTile: React.FC<VolunteerEventTileProps> = (props) => {
   return (
     <SimpleAnimatedComponent className="w-full !delay-300">
       <RippleEffect
-        className={`w-full transition-color font-montserrat p-2 rounded-[12px] border-[1px] flex flex-row gap-4 items-center ${
+        className={`w-full transition-color font-montserrat p-2 rounded-[12px] border-[1px] ${
           isSelected ? "border-[#228B22]" : "border-[#0000004D]"
         }`}
         onClick={onSelect}
       >
-        <img
-          src={`${baseURL}/${image}`}
-          alt={title}
-          className="h-[74px] w-[120px] object-cover rounded-[4px]"
-        />
+        <div className="flex flex-row gap-4 items-center">
+          <img
+            src={`${baseURL}/${image}`}
+            alt={title}
+            className="h-[74px] w-[120px] object-cover rounded-[4px]"
+          />
 
-        <div className="space-y-4">
-          <p className="font-medium text-[16px] leading-[22px] text-left">
-            {title}
-          </p>
+          <div className="space-y-4">
+            <p className="font-medium text-[16px] leading-[22px] text-left">
+              {title}
+            </p>
 
-          <div className="flex flex-row gap-2 items-center">
-            <div className="flex flex-row gap-1 text-[#000000] text-[12px] md:text-[14px] leading-[15px] md:leading-[22px] font-light items-center">
-              <LocationIcon
-                height={isMobile ? 12 : 16}
-                width={isMobile ? 12 : 16}
-              />
+            <div className="flex flex-row gap-2 items-center">
+              <div className="flex flex-row gap-1 text-[#000000] text-[12px] md:text-[14px] leading-[15px] md:leading-[22px] font-light items-center">
+                <LocationIcon
+                  height={isMobile ? 12 : 16}
+                  width={isMobile ? 12 : 16}
+                />
 
-              <p>
-                {city}, {state}
-              </p>
-            </div>
+                <p>
+                  {city}, {state}
+                </p>
+              </div>
 
-            <div className="flex flex-row gap-1 text-[#000000] text-[12px] md:text-[14px] leading-[15px] md:leading-[22px] font-light items-center">
-              <TimerIcon
-                height={isMobile ? 12 : 16}
-                width={isMobile ? 12 : 16}
-              />
+              <div className="flex flex-row gap-1 text-[#000000] text-[12px] md:text-[14px] leading-[15px] md:leading-[22px] font-light items-center">
+                <TimerIcon
+                  height={isMobile ? 12 : 16}
+                  width={isMobile ? 12 : 16}
+                />
 
-              <p>{new Date(date).toDateString()}</p>
+                <p>{new Date(date).toDateString()}</p>
+              </div>
             </div>
           </div>
         </div>

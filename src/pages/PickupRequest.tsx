@@ -39,7 +39,10 @@ const PickupRequestPage: React.FC = () => {
             <div className="flex flex-row gap-4 items-stretch">
               <PickupOverview title="Total Pickups" count={total} />
 
-              <PickupOverview title="Coins Earned" count={totalEarned} />
+              <PickupOverview
+                title="Leaderboard Points Earned"
+                count={totalEarned}
+              />
             </div>
           </div>
         </SimpleAnimatedComponent>
@@ -91,27 +94,31 @@ const PickupTile: React.FC<PickTileProps> = (props) => {
   return (
     <SimpleAnimatedComponent className="!delay-300">
       <RippleEffect
-        className={`transition-color w-full flex flex-row justify-between p-2 rounded-[12px] border-[1px] ${
+        className={`transition-color w-full p-2 rounded-[12px] border-[1px] ${
           isSelected ? "border-[#228B22]" : "border-[#0000004D] "
         }`}
         onClick={onSelect}
       >
-        <div className="flex flex-row items-center gap-4">
-          <Recycle />
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-row items-center gap-4">
+            <Recycle />
 
-          <div>
-            <p className="text-[12px] leading-[22px] font-light">{item.name}</p>
+            <div>
+              <p className="text-[12px] leading-[22px] font-light text-left">
+                {item.name}
+              </p>
+              <p className="text-[14px] leading-[22px]">
+                {new Date(createdAt).toDateString()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-end">
+            <p className="text-[12px] leading-[22px] font-light">Est payout</p>
             <p className="text-[14px] leading-[22px]">
-              {new Date(createdAt).toDateString()}
+              {formatLargeNumber(+amount)}
             </p>
           </div>
-        </div>
-
-        <div className="flex flex-col items-end">
-          <p className="text-[12px] leading-[22px] font-light">Est payout</p>
-          <p className="text-[14px] leading-[22px]">
-            {formatLargeNumber(+amount)}
-          </p>
         </div>
       </RippleEffect>
     </SimpleAnimatedComponent>

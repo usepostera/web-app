@@ -48,7 +48,7 @@ const VolunteerEventDetail: React.FC<Props> = (props) => {
           <img
             src={`${baseURL}/${event.image}`}
             alt=""
-            className="h-[224px] object-cover rounded-[12px] mb-4"
+            className="h-[224px] w-full object-cover rounded-[12px] mb-4"
           />
 
           <h4 className="text-[20px] leading-[22px] font-medium mb-1">
