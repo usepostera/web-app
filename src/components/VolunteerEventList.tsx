@@ -83,10 +83,10 @@ const EventTile: React.FC<VolunteerEventTileProps> = (props) => {
             </p>
 
             <div className="flex flex-row gap-2 items-center">
-              <div className="flex flex-row gap-1 text-[#000000] text-[12px] md:text-[14px] leading-[15px] md:leading-[22px] font-light items-center">
+              <div className="flex flex-row gap-1 text-[#000000] text-[10px] md:text-[14px] leading-[13px] md:leading-[22px] font-light items-center">
                 <LocationIcon
-                  height={isMobile ? 12 : 16}
-                  width={isMobile ? 12 : 16}
+                  height={isMobile ? 10 : 16}
+                  width={isMobile ? 10 : 16}
                 />
 
                 <p>
@@ -94,10 +94,10 @@ const EventTile: React.FC<VolunteerEventTileProps> = (props) => {
                 </p>
               </div>
 
-              <div className="flex flex-row gap-1 text-[#000000] text-[12px] md:text-[14px] leading-[15px] md:leading-[22px] font-light items-center">
+              <div className="flex flex-row gap-1 text-[#000000] text-[10px] md:text-[14px] leading-[13px] md:leading-[22px] font-light items-center">
                 <TimerIcon
-                  height={isMobile ? 12 : 16}
-                  width={isMobile ? 12 : 16}
+                  height={isMobile ? 10 : 16}
+                  width={isMobile ? 10 : 16}
                 />
 
                 <p>{new Date(date).toDateString()}</p>
