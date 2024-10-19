@@ -47,6 +47,7 @@ async function fetchBaseTokens(): Promise<Token[]> {
       }
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tokens: Token[] = response.data.map((token: any) => ({
       address: "", // You'll need to manually add these or use a different API
       chainId: 8453, // Base mainnet chain ID
@@ -65,7 +66,7 @@ async function fetchBaseTokens(): Promise<Token[]> {
 
 export default function SwapComponents() {
   const { address } = useAccount();
-  const [swappableTokens, setSwappableTokens] = useState<Token[]>([]);
+  const [, setSwappableTokens] = useState<Token[]>([]);
 
   useEffect(() => {
     async function loadTokens() {
