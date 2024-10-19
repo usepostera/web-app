@@ -4,6 +4,7 @@ import {
   WalletDropdown,
   WalletDropdownBasename,
   WalletDropdownDisconnect,
+  WalletDropdownLink,
 } from "@coinbase/onchainkit/wallet";
 import Inputs from "./Input";
 import SearchIcon from "../assets/svgs/search_icon.svg";
@@ -118,6 +119,12 @@ const AppHeader = () => {
                 <EthBalance />
               </Identity>
               <WalletDropdownBasename />
+              <WalletDropdownLink
+                icon="wallet"
+                href="https://keys.coinbase.com"
+              >
+                Wallet
+              </WalletDropdownLink>
               <WalletDropdownDisconnect />
             </WalletDropdown>
           </Wallet>

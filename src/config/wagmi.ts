@@ -14,6 +14,8 @@ export const wagmiConfig = createConfig({
   ],
   ssr: true,
   transports: {
-    [baseSepolia.id]: http(),
+    [baseSepolia.id]: http(
+      "https://api.developer.coinbase.com/rpc/v1/base-sepolia/Mpvo9ZhDVRL9PeM0rYK27NTxWh7CeJXu"
+    ),
   },
 });

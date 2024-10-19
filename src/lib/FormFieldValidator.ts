@@ -39,6 +39,15 @@ export class FormFieldValidator<T, FormType extends object>
         }
         return Number(value) >= rule.min ? null : rule.message;
 
+      case "max":
+        if (value === "" || value === null || value === undefined) {
+          return "Cannot be empty";
+        }
+        if (isNaN(Number(value))) {
+          throw new Error("Max value rule only work with numbers");
+        }
+        return Number(value) <= rule.max ? null : rule.message;
+
       case "not_empty":
         if (typeof value === "undefined" || value === null || value === "") {
           return rule.message;

@@ -156,3 +156,11 @@ export type TVolunteerEvent = {
     email: string;
   };
 };
+
+export type TWithdrawal = {
+  transactionHash: string | undefined;
+  blockNumber: string | number | bigint | undefined;
+  user: string;
+  amount: string;
+  timestamp: number;
+};

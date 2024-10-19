@@ -14,7 +14,7 @@ const SlideButton: React.FC<Props> = ({ onComplete, label, loading }) => {
 
   const handleMouseDown: React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault();
-    console.log("start sliding");
+    if (loading) return;
     setIsSliding(true);
   };
 
@@ -43,6 +43,7 @@ const SlideButton: React.FC<Props> = ({ onComplete, label, loading }) => {
       // If the position is greater than 90%, snap to 100% and complete the action
       if (position >= slider.offsetWidth * 0.9) {
         setPosition(slider.offsetWidth); // Snap to 100%
+        setIsSliding(false);
         await onComplete();
       }
 

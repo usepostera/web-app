@@ -4,6 +4,7 @@ import recyclableReducer from "./recyclableSlice";
 import userAddressReducer from "./addressSlice";
 import pickupRequestReducer from "./pickupRequestSlice";
 import leaderboardReducer from "./leaderboardSlice";
+import withdrawalReducer from "./withdrawalSlice";
 import appReducer from "./appSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -24,6 +25,7 @@ const store = configureStore({
     pickupRequest: pickupRequestReducer,
     leaderboard: leaderboardReducer,
     app: appReducer,
+    withdrawal: withdrawalReducer,
   },
 });
 

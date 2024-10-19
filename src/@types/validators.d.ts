@@ -13,6 +13,11 @@ type TValidatorRuleMin = {
   min: number;
 };
 
+type TValidatorRuleMax = {
+  rule: "max";
+  max: number | bigint;
+};
+
 type TValidatorRuleMaxLength = {
   rule: "max_length";
   max: number;
@@ -40,4 +45,5 @@ export type TValidatorRule<FormType extends object> = (
   | TValidatorRuleNotEmpty
   | TValidatorRuleEqualsOtherField<FormType>
   | TValidatorRuleMin
+  | TValidatorRuleMax
 ) & { message: string };

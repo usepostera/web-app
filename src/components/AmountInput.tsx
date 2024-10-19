@@ -1,17 +1,20 @@
 import React, { useCallback, useEffect } from "react";
 import CustomKeyboard, { TCustomInputKey } from "./CustomKeyboard";
 import { TValidatorError } from "../@types";
+import SimpleAnimatedComponent from "./SimpleAnimatedComponent";
 
 type Props = {
-  error?: string;
+  error: TValidatorError | null;
   value: string;
   onChange: (val: string) => void;
+  disabled?: boolean;
 };
 
 const AmountInput: React.FC<Props> = ({
   error,
   value: inputValue,
   onChange: setInputValue,
+  disabled = false,
 }) => {
   const handleKeyPress = useCallback(
     (value: TCustomInputKey) => {
@@ -63,7 +66,7 @@ const AmountInput: React.FC<Props> = ({
         <AmountDisplay amount={inputValue} error={error} />
       </div>
 
-      <CustomKeyboard onKeyPress={handleKeyPress} />
+      <CustomKeyboard onKeyPress={handleKeyPress} disabled={disabled} />
     </div>
   );
 };
@@ -78,15 +81,23 @@ type AmountDisplayProps = {
 const AmountDisplay: React.FC<AmountDisplayProps> = ({ amount, error }) => {
   return (
     <>
-      <div className="text-center text-[36px] leading-[43px] font-montserrat">
+      <div className="text-center text-[48px] leading-[53px] font-montserrat">
         {amount ? (
-          <span className="font-semibold text-black">{amount}</span>
+          <div className="!w-[200px] mx-auto overflow-hidden overflow-x-auto scrollbar-hidden">
+            <div className="font-semibold text-black">{amount}</div>
+          </div>
         ) : (
           <span className="text-gray-400">0.00</span>
         )}
       </div>
 
-      {error && <p className="text-danger font-bold text-[12px]">{error}</p>}
+      {error && (
+        <SimpleAnimatedComponent>
+          <p className="text-danger font-bold text-[12px] text-center">
+            {error}
+          </p>
+        </SimpleAnimatedComponent>
+      )}
     </>
   );
 };

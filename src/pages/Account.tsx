@@ -6,16 +6,13 @@ import LocationIcon from "../assets/svgs/location.svg";
 import { AccountTile } from "../components/AccountTile";
 import NotificationIcon from "../assets/svgs/notification-bing.svg";
 import { TbLogout2 } from "react-icons/tb";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import WalletIcon from "../assets/svgs/wallet-money.svg";
-import RippleEffect from "../components/Ripple";
-import { FaLongArrowAltLeft } from "react-icons/fa";
-import SimpleAnimatedComponent from "../components/SimpleAnimatedComponent";
 import useDeviceView from "../hooks/useDeviceView";
+import GoBack from "../components/GoBack";
 
 const Account: React.FC = () => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
 
   const isMobile = useDeviceView();
   const isOpen = pathname !== "/account";
@@ -64,16 +61,7 @@ const Account: React.FC = () => {
       </div>
 
       <div className="flex-1">
-        {isOpen && isMobile && (
-          <SimpleAnimatedComponent>
-            <RippleEffect
-              className="flex flex-row items-center gap-2 text-[12px] mb-2 w-fit"
-              onClick={() => navigate(-1)}
-            >
-              <FaLongArrowAltLeft /> <span>Go back</span>
-            </RippleEffect>
-          </SimpleAnimatedComponent>
-        )}
+        {isOpen && isMobile && <GoBack />}
 
         <Outlet />
       </div>

@@ -8,11 +8,10 @@ const GoBack = () => {
 
   return (
     <SimpleAnimatedComponent>
-      <RippleEffect
-        className="flex flex-row items-center gap-2 text-[12px] mb-2 w-fit"
-        onClick={() => navigate(-1)}
-      >
-        <FaLongArrowAltLeft /> <span>Go back</span>
+      <RippleEffect className="mb-2 w-fit" onClick={() => navigate(-1)}>
+        <div className="flex flex-row items-center gap-2 text-[12px]">
+          <FaLongArrowAltLeft /> <span>Go back</span>
+        </div>
       </RippleEffect>
     </SimpleAnimatedComponent>
   );

@@ -61,7 +61,7 @@ const RippleEffect: React.FC<RippleEffectProps> = ({
   return (
     <button
       {...others}
-      className={`ripple-container ${className}`}
+      className={`ripple-container block ${className}`}
       ref={rippleContainerRef}
       onClick={createRipple}
       type="button"
