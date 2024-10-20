@@ -39,5 +39,12 @@ export const useVolunteerService = () => {
     [axiosInstance]
   );
 
-  return { getEvents, getEvent };
+  const joinEvent = useCallback(
+    async (id: string): Promise<TVolunteerEvent> => {
+      return (await axiosInstance.post(`/volunteer/join`, { id })).data;
+    },
+    [axiosInstance]
+  );
+
+  return { getEvents, getEvent, joinEvent };
 };

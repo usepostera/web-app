@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SimpleAnimatedComponent from "./SimpleAnimatedComponent";
 import { useVolunteerService } from "../services/volunteer";
 import { TVolunteerEvent } from "../@types";
@@ -13,6 +13,9 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi2";
 import { MdOutlineDirections } from "react-icons/md";
 import Button from "./Button";
+import TimeToGo from "./TimeToGo";
+import RippleEffect from "./Ripple";
+import toast from "react-hot-toast";
 
 type Props = {
   id: string;
@@ -21,7 +24,7 @@ type Props = {
 const VolunteerEventDetail: React.FC<Props> = (props) => {
   const { id } = props;
   const [event, setEvent] = useState<TVolunteerEvent | null>();
-  const { getEvent } = useVolunteerService();
+  const { getEvent, joinEvent } = useVolunteerService();
   const { trigger, loading } = useRequestHandler(getEvent);
 
   useEffect(() => {
@@ -36,6 +39,30 @@ const VolunteerEventDetail: React.FC<Props> = (props) => {
       run();
     }
   }, [id, trigger]);
+
+  const handleDirections = useCallback(() => {
+    if (!event) {
+      return;
+    }
+
+    if (!event.mapLink) {
+      toast.error("Directions not available");
+    } else {
+      window.open(event.mapLink, "_blank");
+    }
+  }, [event]);
+
+  const { trigger: triggerJoin, loading: joining } =
+    useRequestHandler(joinEvent);
+  const handleJoinEvent = useCallback(async () => {
+    if (id) {
+      const result = await triggerJoin(id);
+      if (result) {
+        setEvent(result);
+        toast.success("Successful!");
+      }
+    }
+  }, [id, triggerJoin]);
 
   if (loading || !event) {
     return <Loader size={20} />;
@@ -88,7 +115,7 @@ const VolunteerEventDetail: React.FC<Props> = (props) => {
 
             <div>
               <p className="text-[16px] leading-[22px]">
-                {new Date(event.createdAt).toDateString()}
+                {new Date(event.date).toDateString()}
               </p>
 
               <p className="text-[14px] leading-[22px] font-light">
@@ -97,7 +124,7 @@ const VolunteerEventDetail: React.FC<Props> = (props) => {
             </div>
           </div>
 
-          <div className="mb-10">
+          <div className="mb-6">
             <p className="font-medium text-[16px] leading-[22px]">
               Organizers:
             </p>
@@ -105,26 +132,33 @@ const VolunteerEventDetail: React.FC<Props> = (props) => {
             <p className="text-[16px] leading-[22px]">{event.organizer}</p>
           </div>
 
-          <div className="flex flex-row gap-6 items-center justify-between text-[#292D32] mb-4">
+          <div className="flex flex-row gap-6 items-center justify-between text-[#292D32] mb-6">
             <div className="flex flex-col justify-center items-center">
               <MdOutlineCalendarMonth size={24} color="#292D32" />
-              <p className="text-[12px] leading-[22px]">3 days to go</p>
+              <p className="text-[12px] leading-[22px]">
+                <TimeToGo date={event.date} />
+              </p>
             </div>
 
             <div className="flex flex-col justify-center items-center">
               <HiUserGroup size={24} color="#292D32" />
-              <p className="text-[12px] leading-[22px]">3 days to go</p>
+              <p className="text-[12px] leading-[22px]">
+                {event.participantIds.length} participants
+              </p>
             </div>
 
-            <div className="flex flex-col justify-center items-center">
-              <MdOutlineDirections size={24} color="#292D32" />
-              <p className="text-[12px] leading-[22px]">3 days to go</p>
-            </div>
+            <RippleEffect onClick={handleDirections}>
+              <div className="flex flex-col justify-center items-center">
+                <MdOutlineDirections size={24} color="#292D32" />
+                <p className="text-[12px] leading-[22px]">Directions</p>
+              </div>
+            </RippleEffect>
           </div>
 
           <Button.Sliding
             label="Slide to join event"
-            onComplete={() => console.log("join")}
+            onComplete={handleJoinEvent}
+            loading={joining}
           />
         </div>
       </SimpleAnimatedComponent>
