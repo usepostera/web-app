@@ -11,7 +11,7 @@ import { useForm } from "../hooks/useForm";
 import { FormFieldValidator } from "../lib/FormFieldValidator";
 import { useRequestHandler } from "../hooks/useRequestHandler";
 import { parseEther } from "ethers";
-import { useCapabilities, useWriteContracts } from "wagmi/experimental";
+import { useWriteContracts } from "wagmi/experimental";
 import { wagmiConfig } from "../config/wagmi";
 import { parseAbi } from "viem";
 import toast from "react-hot-toast";
@@ -27,7 +27,7 @@ const WithdrawCoins: React.FC<Props> = (props) => {
   const { isOpen, balance } = props;
   const [isVisible, setIsVisible] = useState(false);
 
-  const { address, chainId } = useAccount();
+  const { chainId } = useAccount();
   const abi = parseAbi(["function withdraw(uint256)"]);
 
   const validators = useMemo(() => {
@@ -73,24 +73,24 @@ const WithdrawCoins: React.FC<Props> = (props) => {
     setTimeout(props.onClose, 300);
   }, [props.onClose]);
 
-  const { data: availableCapabilities } = useCapabilities({
-    account: address,
-  });
+  // const { data: availableCapabilities } = useCapabilities({
+  //   account: address,
+  // });
 
-  const capabilities = useMemo(() => {
-    if (!availableCapabilities || !chainId) return;
-    const capabilitiesForChain = availableCapabilities[chainId];
-    if (
-      capabilitiesForChain["paymasterService"] &&
-      capabilitiesForChain["paymasterService"].supported
-    ) {
-      return {
-        paymasterService: {
-          url: "https://api.developer.coinbase.com/rpc/v1/base-sepolia/Mpvo9ZhDVRL9PeM0rYK27NTxWh7CeJXu",
-        },
-      };
-    }
-  }, [availableCapabilities, chainId]);
+  // const capabilities = useMemo(() => {
+  //   if (!availableCapabilities || !chainId) return;
+  //   const capabilitiesForChain = availableCapabilities[chainId];
+  //   if (
+  //     capabilitiesForChain["paymasterService"] &&
+  //     capabilitiesForChain["paymasterService"].supported
+  //   ) {
+  //     return {
+  //       paymasterService: {
+  //         url: "https://api.developer.coinbase.com/rpc/v1/base-sepolia/Mpvo9ZhDVRL9PeM0rYK27NTxWh7CeJXu",
+  //       },
+  //     };
+  //   }
+  // }, [availableCapabilities, chainId]);
 
   const { writeContractsAsync } = useWriteContracts({
     config: wagmiConfig,
