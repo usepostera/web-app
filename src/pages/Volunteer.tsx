@@ -34,7 +34,7 @@ const Volunteer: React.FC = () => {
         </div>
       )}
 
-      <div className={`flex-1 md:max-w-[400px] ${id ? "hidden md:block" : ""}`}>
+      <div className={`flex-1  ${id ? "hidden md:block" : ""}`}>
         <div className="mt-4">
           {id && (
             <div className="my-2">
