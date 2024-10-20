@@ -82,14 +82,16 @@ const VolunteerEventDetail: React.FC<Props> = (props) => {
             {event.title}
           </h4>
 
-          <div className="flex flex-row text-[16px] font-light leading-[22px] mb-6">
-            <p className="mr-2">By</p>
+          <div className="flex flex-col md:flex-row text-[16px] font-light leading-[22px] mb-6 mt-4 md:!mt-0 gap-2">
+            <div className="flex flex-row">
+              <p className="mr-2">By</p>
 
-            <div className="mr-1">
-              <CustomAvatar radius={10} />
+              <div className="mr-1">
+                <CustomAvatar radius={10} />
+              </div>
+
+              <p className="font-normal mr-2">{event.user.name}</p>
             </div>
-
-            <p className="font-normal mr-2">{event.user.name}</p>
 
             <p className="text-[14px]">
               <CreatedAt createdAt={event.createdAt} />

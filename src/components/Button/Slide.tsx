@@ -12,59 +12,74 @@ const SlideButton: React.FC<Props> = ({ onComplete, label, loading }) => {
   const [position, setPosition] = useState(0);
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
-  const handleMouseDown: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleStart = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     if (loading) return;
     setIsSliding(true);
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMove = (e: MouseEvent | TouchEvent) => {
     if (!isSliding) return;
 
     const slider = sliderRef.current;
     if (slider) {
       const sliderWidth = slider.offsetWidth;
-      const newPosition = e.clientX - slider.getBoundingClientRect().left;
+      let newPosition;
 
-      // Check if the position exceeds 90% of the slider width
-      if (newPosition >= sliderWidth * 0.9) {
-        setPosition(sliderWidth); // Snap to 100% (the sliderWidth)
+      // For mobile (touch) or desktop (mouse)
+      if ("touches" in e) {
+        newPosition =
+          e.touches[0].clientX - slider.getBoundingClientRect().left;
       } else {
-        setPosition(Math.max(0, Math.min(newPosition, sliderWidth))); // Normal dragging behavior
+        newPosition = e.clientX - slider.getBoundingClientRect().left;
+      }
+
+      if (newPosition >= sliderWidth * 0.9) {
+        setPosition(sliderWidth);
+      } else {
+        setPosition(Math.max(0, Math.min(newPosition, sliderWidth)));
       }
     }
   };
 
-  const handleMouseUp = async () => {
+  const handleEnd = async () => {
     if (!isSliding) return;
 
     const slider = sliderRef.current;
     if (slider) {
-      // If the position is greater than 90%, snap to 100% and complete the action
       if (position >= slider.offsetWidth * 0.9) {
-        setPosition(slider.offsetWidth); // Snap to 100%
+        setPosition(slider.offsetWidth);
         setIsSliding(false);
         await onComplete();
       }
 
-      setPosition(0); // Reset the slider if not past 90%
+      setPosition(0);
     }
 
     setIsSliding(false);
   };
 
   useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => handleMove(e);
+    const handleTouchMove = (e: TouchEvent) => handleMove(e);
+
     if (isSliding) {
       window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
+      window.addEventListener("touchmove", handleTouchMove);
+      window.addEventListener("mouseup", handleEnd);
+      window.addEventListener("touchend", handleEnd);
     } else {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("mouseup", handleEnd);
+      window.removeEventListener("touchend", handleEnd);
     }
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("mouseup", handleEnd);
+      window.removeEventListener("touchend", handleEnd);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSliding, position]);
@@ -84,7 +99,8 @@ const SlideButton: React.FC<Props> = ({ onComplete, label, loading }) => {
           }
         )}
         style={{ width: `${Math.max(50, position)}px` }}
-        onMouseDown={handleMouseDown}
+        onMouseDown={handleStart}
+        onTouchStart={handleStart}
       >
         {loading ? (
           <div className="loader mr-2"></div>
