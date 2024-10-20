@@ -23,6 +23,7 @@ import { useCallback, useEffect, useState } from "react";
 import { MobileNavMenu } from "./MobileNavMenu";
 import useDeviceView from "../hooks/useDeviceView";
 import RippleEffect from "./Ripple";
+import { base } from "wagmi/chains";
 
 const pathnameMapping: { [key: string]: string } = {
   "/": "Home",
@@ -108,12 +109,12 @@ const AppHeader = () => {
         <div className="flex flex-row gap-4">
           <Wallet>
             <ConnectWallet className="bg-[#0000000D] hover:bg-[#0000004D]">
-              <Avatar className="h-6 w-6" />
+              <Avatar className="h-6 w-6" chain={base} />
               <Name />
             </ConnectWallet>
             <WalletDropdown>
               <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
-                <Avatar />
+                <Avatar chain={base} />
                 <Name />
                 <Address className={color.foregroundMuted} />
                 <EthBalance />

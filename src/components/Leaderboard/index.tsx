@@ -7,6 +7,7 @@ import { Avatar, Name } from "@coinbase/onchainkit/identity";
 import { useAccount } from "wagmi";
 import { formatLargeNumber } from "../../lib/helpers";
 import { useMe } from "../../hooks/useMe";
+import { base } from "wagmi/chains";
 const Leaderboard: React.FC = () => {
   const month = useMemo(
     () =>
@@ -56,7 +57,7 @@ const Leaderboard: React.FC = () => {
                     {isConnected && (
                       <Avatar
                         address={address}
-                        chain={chain}
+                        chain={base}
                         className="h-[40px] w-[40px]"
                       />
                     )}
@@ -97,7 +98,7 @@ const Leaderboard: React.FC = () => {
                           <Avatar
                             className="h-[40px] w-[40px]"
                             address={item.walletAddress as `0x${string}`}
-                            chain={chain}
+                            chain={base}
                           />
 
                           <Name

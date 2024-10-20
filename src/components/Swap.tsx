@@ -16,6 +16,7 @@ import { useAccount } from "wagmi";
 import type { Token } from "@coinbase/onchainkit/token";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { base } from "wagmi/chains";
 
 async function fetchBaseTokens(): Promise<Token[]> {
   // Define a list of tokens available on Base mainnet
@@ -124,7 +125,7 @@ export default function SwapComponents() {
   ) : (
     <Wallet>
       <ConnectWallet>
-        <Avatar className="h-6 w-6" />
+        <Avatar className="h-6 w-6" chain={base} />
         <Name />
       </ConnectWallet>
     </Wallet>

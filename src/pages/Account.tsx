@@ -10,6 +10,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import WalletIcon from "../assets/svgs/wallet-money.svg";
 import useDeviceView from "../hooks/useDeviceView";
 import GoBack from "../components/GoBack";
+import { base } from "wagmi/chains";
 
 const Account: React.FC = () => {
   const { pathname } = useLocation();
@@ -26,7 +27,7 @@ const Account: React.FC = () => {
       >
         <Wallet className="w-full">
           <ConnectWallet className="bg-transparent hover:bg-transparent p-4">
-            <Avatar />
+            <Avatar chain={base} />
             <Address
               className="my-auto font-medium text-[16px]"
               isSliced={true}
