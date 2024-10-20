@@ -8,7 +8,7 @@ export const wagmiConfig = createConfig({
   connectors: [
     coinbaseWallet({
       appName: "Postera",
-      preference: "all", // set this to `all` to use EOAs as well
+      preference: "smartWalletOnly", // set this to `all` to use EOAs as well
       version: "4",
     }),
   ],

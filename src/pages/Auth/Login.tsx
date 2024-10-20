@@ -14,7 +14,7 @@ const Login: React.FC = () => {
             </h1>
 
             <p className="text-[14px] leading-[17.07px] mb-2 text-center">
-              Welcome to Postera. Please, connect your wallet to continue
+              Welcome to Postera. Please, connect your SMART wallet to continue.
             </p>
 
             <ConnectButton />
