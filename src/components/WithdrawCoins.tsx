@@ -99,7 +99,7 @@ const WithdrawCoins: React.FC<Props> = (props) => {
   const { trigger, loading } = useRequestHandler(writeContractsAsync);
 
   const submitForm = useCallback(async () => {
-    if (validate()) {
+    if (validate() && chainId) {
       const weiValue = parseEther(form.amount.toString());
 
       console.log(weiValue, form.amount);
@@ -113,7 +113,7 @@ const WithdrawCoins: React.FC<Props> = (props) => {
             args: [weiValue],
           },
         ],
-        capabilities,
+        // capabilities,
       });
 
       console.log("[result]", result);
@@ -124,7 +124,7 @@ const WithdrawCoins: React.FC<Props> = (props) => {
         );
       }
     }
-  }, [validate, form.amount, trigger, abi, capabilities]);
+  }, [validate, form.amount, trigger, abi, chainId]);
 
   useEffect(() => {
     if (isOpen) {
