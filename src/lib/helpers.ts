@@ -4,10 +4,10 @@ import { InternalAxiosRequestConfig } from "axios";
 export const requestInterceptor =
   (token?: string | null) =>
   async (config: InternalAxiosRequestConfig<any>) => {
-    console.log(token ? "Token exists" : "Token does not exist");
-    console.log(token);
-    console.log(config.url);
-    console.log(config.method);
+    // console.log(token ? "Token exists" : "Token does not exist");
+    // console.log(token);
+    // console.log(config.url);
+    // console.log(config.method);
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
